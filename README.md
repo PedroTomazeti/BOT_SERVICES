@@ -4,11 +4,11 @@ Automação em Python para o lançamento de notas fiscais de serviço no sistema
 
 ## 💡 Objetivo
 
-Este projeto automatiza o processo de análise e registro de notas fiscais de serviço emitidas. Ele atua diretamente na interface do TOTVS, realizando o preenchimento de campos com base nos dados extraídos dos arquivos XMLs e PDFs das notas.
+Este projeto automatiza o processo de análise e registro de notas fiscais de serviço emitidas. Ele atua diretamente na interface do TOTVS, realizando o preenchimento de campos com base nos dados extraídos dos arquivos XMLs das notas.
 
 ## 🚀 Funcionalidades
 
-- Extração de informações de XMLs e PDFs.
+- Extração de informações de XMLs.
 - Análise e categorização das notas.
 - Busca automática de arquivos em pastas padronizadas.
 - Interação com sistema TOTVS para preenchimento automatizado.
