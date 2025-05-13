@@ -1,5 +1,5 @@
 # BOT-SERVICO
-Automação em Python para o lançamento de notas fiscais de serviço no sistema TOTVS.
+> Automação do lançamento de notas de serviço no TOTVS usando Python e Selenium, com interface gráfica e análise de XML.
 
 ## 💡 Objetivo
 
