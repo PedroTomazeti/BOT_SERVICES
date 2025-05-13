@@ -58,3 +58,7 @@ BOT_SERVICES/
 
 ## Para criar o .exe:
 > pyinstaller --onefile -w --icon=icons/"ICONE CRIADO".ico --name="NOME DA SUA ESCOLHA" app/app.py
+
+## ⚠️ Avisos
+- Os dados e caminhos usados seguem padrões internos e foram adaptados para evitar exposição de informações sensíveis.
+- Repositório pode sofrer mudança dependendo da necessidade
