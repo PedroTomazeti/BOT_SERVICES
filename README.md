@@ -1,5 +1,4 @@
-# BOT_SERVICES
-
+# BOT-SERVICO
 Automação em Python para o lançamento de notas fiscais de serviço no sistema TOTVS.
 
 ## 💡 Objetivo
