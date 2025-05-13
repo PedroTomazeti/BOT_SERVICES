@@ -19,6 +19,7 @@ Este projeto automatiza o processo de análise e registro de notas fiscais de se
 BOT_SERVICES/
 │<br>
 ├── app/ # Interface gráfica (controle da automação)<br>
+├── assets/ # Arquivos XML organizados por mês/ano<br>
 ├── build/ # Pasta gerada pelo PyInstaller<br>
 ├── dist/ # Executável e bancos de dados locais<br>
 ├── env/ # Ambiente virtual (excluído pelo .gitignore)<br>
