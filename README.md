@@ -19,19 +19,19 @@ Este projeto automatiza o processo de análise e registro de notas fiscais de se
 ## 📁 Estrutura de Pastas
 BOT_SERVICES/
 │
-├── app/ # Interface gráfica (controle da automação)
-├── build/ # Pasta gerada pelo PyInstaller
-├── dist/ # Executável e bancos de dados locais
-├── env/ # Ambiente virtual (excluído pelo .gitignore)
-├── icons/ # Ícones usados na aplicação
-├── path/ # JSONs e configurações de caminhos
-├── processos/ # Scripts principais de automação (análise, extração, interação web)
-├── utils/ # Funções auxiliares (ex: serviços.py)
-├── web/ # Módulos relacionados à automação web
-├── .gitignore # Arquivos/pastas ignoradas pelo Git
-├── KADRIX S.spec # Configuração do PyInstaller
-├── README.md # Este arquivo
-├── requirements.txt # Dependências do projeto
+├── app/ # Interface gráfica (controle da automação)<br>
+├── build/ # Pasta gerada pelo PyInstaller<br>
+├── dist/ # Executável e bancos de dados locais<br>
+├── env/ # Ambiente virtual (excluído pelo .gitignore)<br>
+├── icons/ # Ícones usados na aplicação<br>
+├── path/ # JSONs e configurações de caminhos<br>
+├── processos/ # Scripts principais de automação (análise, extração, interação web)<br>
+├── utils/ # Funções auxiliares (ex: serviços.py)<br>
+├── web/ # Módulos relacionados à automação web<br>
+├── .gitignore # Arquivos/pastas ignoradas pelo Git<br>
+├── KADRIX S.spec # Configuração do PyInstaller<br>
+├── README.md # Este arquivo<br>
+├── requirements.txt # Dependências do projeto<br>
 
 
 ## ⚙️ Tecnologias Utilizadas
