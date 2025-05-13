@@ -18,7 +18,7 @@ Este projeto automatiza o processo de análise e registro de notas fiscais de se
 
 ## 📁 Estrutura de Pastas
 BOT_SERVICES/
-│
+│<br>
 ├── app/ # Interface gráfica (controle da automação)<br>
 ├── build/ # Pasta gerada pelo PyInstaller<br>
 ├── dist/ # Executável e bancos de dados locais<br>
