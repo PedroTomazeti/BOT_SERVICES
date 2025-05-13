@@ -61,3 +61,4 @@ BOT_SERVICES/
 ## ⚠️ Avisos
 - Os dados e caminhos usados seguem padrões internos e foram adaptados para evitar exposição de informações sensíveis.
 - Repositório pode sofrer mudança dependendo da necessidade
+- Lembre sempre de mudar caminhos como icone desejado, papel de parede, caminho de arquivos, unidades que você vai utilizar.
