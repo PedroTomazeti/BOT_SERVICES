@@ -59,6 +59,4 @@ BOT_SERVICES/
 > pyinstaller --onefile -w --icon=icons/"ICONE CRIADO".ico --name="NOME DA SUA ESCOLHA" app/app.py
 
 ## ⚠️ Avisos
-- Os dados e caminhos usados seguem padrões internos e foram adaptados para evitar exposição de informações sensíveis.
-- Repositório pode sofrer mudança dependendo da necessidade
-- Lembre sempre de mudar caminhos como site, icone desejado, papel de parede, caminho de arquivos, unidades que você vai utilizar, usuário e senha, tudo relacionado aou seu perfil e empresa.
+- Este projeto é uma versão genérica, sem qualquer vínculo com dados sensíveis ou proprietários. Adaptado exclusivamente para fins educacionais e de portfólio.
