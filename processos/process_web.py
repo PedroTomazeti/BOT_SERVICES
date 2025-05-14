@@ -2,6 +2,7 @@ from time import sleep
 import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -548,57 +549,60 @@ def altera_nota(driver, element, valor_desejado, log_queue):
     Tenta alterar o valor do campo e verifica se a alteração foi bem-sucedida.
     Retorna True se a alteração for confirmada, False se falhar após todas as tentativas.
     """
+    limite_tentativas = 3
+    tentativas = 0
+
     while tentativas < limite_tentativas:
-        print("\nExpandindo dialog para análise do número da nota.")
-        log_queue.put("\nExpandindo dialog para análise do número da nota.")
-        dialog_element = wait_for_element(driver, By.CSS_SELECTOR, f'wa-dialog[id="COMP6000"] > wa-tcbrowse[id="COMP6004"]')
+        if tentativas > 0:        
+            print("\nExpandindo dialog para análise do número da nota.")
+            log_queue.put("\nExpandindo dialog para análise do número da nota.")
+            dialog_element = wait_for_element(driver, By.CSS_SELECTOR, f'wa-dialog[id="COMP6000"] > wa-tcbrowse[id="COMP6004"]')
+                
+            shadow_root = expand_shadow_element(driver, dialog_element)
+
+            wa_dialog = wait_for_element(shadow_root, By.CSS_SELECTOR, element)
+            sleep(2)
+            valor_atual = wa_dialog.text.strip()
+            print(f"Valor atual do campo: {valor_atual}")
+            log_queue.put(f"Valor atual do campo: {valor_atual}")
+            valor_desejado = valor_desejado.strip()  # Garante que também esteja sem espaços extras
+
+            if valor_atual == valor_desejado:
+                print(f"Valor alterado com sucesso: {valor_atual}")
+                log_queue.put(f"Valor alterado com sucesso: {valor_atual}")
+                return True  # Sucesso: o valor foi alterado corretamente
             
-        shadow_root = expand_shadow_element(driver, dialog_element)
+            if not shadow_root:
+                    print("ShadowRoot não encontrado no elemento wa-dialog.")
+                    log_queue.put("ShadowRoot não encontrado no elemento wa-dialog.")
+                    return
 
-        wa_dialog = wait_for_element(shadow_root, By.CSS_SELECTOR, element)
-        sleep(2)
-        valor_atual = wa_dialog.text.strip()
-        print(f"Valor atual do campo: {valor_atual}")
-        log_queue.put(f"Valor atual do campo: {valor_atual}")
-        valor_desejado = valor_desejado.strip()  # Garante que também esteja sem espaços extras
+            print("ShadowRoot expandido com sucesso.")
+            log_queue.put("ShadowRoot expandido com sucesso.")
 
-        if valor_atual == valor_desejado:
-            print(f"Valor alterado com sucesso: {valor_atual}")
-            log_queue.put(f"Valor alterado com sucesso: {valor_atual}")
-            return True  # Sucesso: o valor foi alterado corretamente
-        
-        if not shadow_root:
-                print("ShadowRoot não encontrado no elemento wa-dialog.")
-                log_queue.put("ShadowRoot não encontrado no elemento wa-dialog.")
+            # Tentar localizar o elemento dentro do ShadowRoot
+            target_element = shadow_root.find_element(By.CSS_SELECTOR, element)
+
+            if not target_element:
+                print("Elemento dentro do Shadow DOM não encontrado. Verifique o seletor.")
+                log_queue.put("Elemento dentro do Shadow DOM não encontrado. Verifique o seletor.")
                 return
 
-        print("ShadowRoot expandido com sucesso.")
-        log_queue.put("ShadowRoot expandido com sucesso.")
+            print("Elemento localizado dentro do Shadow DOM:", target_element)
+            log_queue.put(f"Elemento localizado dentro do Shadow DOM: {target_element}")
 
-        # Tentar localizar o elemento dentro do ShadowRoot
-        target_element = shadow_root.find_element(By.CSS_SELECTOR, element)
-
-        if not target_element:
-            print("Elemento dentro do Shadow DOM não encontrado. Verifique o seletor.")
-            log_queue.put("Elemento dentro do Shadow DOM não encontrado. Verifique o seletor.")
-            return
-
-        print("Elemento localizado dentro do Shadow DOM:", target_element)
-        log_queue.put(f"Elemento localizado dentro do Shadow DOM: {target_element}")
-
-        print("\nValores diferentes.")
-        # Simular a tecla "Enter" com JavaScript
-        driver.execute_script("""
-            var event = new KeyboardEvent('keydown', {
-                bubbles: true,
-                cancelable: true,
-                key: 'Enter',
-                code: 'Enter',
-                keyCode: 13
-            });
-            arguments[0].dispatchEvent(event);
-        """, target_element)
-        sleep(2)
+            driver.execute_script("""
+                var event = new KeyboardEvent('keydown', {
+                    bubbles: true,
+                    cancelable: true,
+                    key: 'Enter',
+                    code: 'Enter',
+                    keyCode: 13
+                });
+                arguments[0].dispatchEvent(event);
+                """, target_element)
+            
+            sleep(1)
 
         campo_rotina = wait_for_element(driver, By.CSS_SELECTOR, 'wa-panel[id="COMP3053"] > wa-text-input[id="COMP3056"]')
 
@@ -609,6 +613,15 @@ def altera_nota(driver, element, valor_desejado, log_queue):
         if valor_atual != valor_desejado:
             print("\nAlterando valor da nota.")
             log_queue.put("\nAlterando valor da nota.")
+            
+            inserir = shadow_input(driver, 'wa-panel[id="COMP3053"] > wa-text-input[id="COMP3056"]', valor_desejado, log_queue)
+
+            inserir.send_keys(Keys.RETURN)  # Press Enter to submit
+            print("Enter pressionado.")
+            log_queue.put("Enter pressionado.")
+            sleep(0.2)
+
+            tentativas+=1
         else:
             print("O valor já está correto, nenhuma alteração necessária.")
             log_queue.put("O valor já está correto, nenhuma alteração necessária.")

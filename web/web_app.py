@@ -1122,8 +1122,6 @@ def preparar_doc(driver, log_queue, num_nota):
         driver, "COMP6000", "COMP6004", 
         'div.horizontal-scroll > table > tbody > tr#\\33 > td#\\31 > div', 
         log_queue, num_nota)
-    
-    altera_nota(driver, 'div.horizontal-scroll > table > tbody > tr#\\33 > td#\\31 > div', num_nota, log_queue)
 
     time.sleep(5)
     shadow_button(driver, 'wa-dialog[id="COMP6000"] > wa-button[id="COMP6005"]', 'button', log_queue)
