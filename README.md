@@ -16,7 +16,7 @@ Este projeto automatiza o processo de análise e registro de notas fiscais de se
 - Exportável como `.exe` para execução sem dependências externas.
 
 ## 📁 Estrutura de Pastas
-BOT_SERVICES/
+BOT-SERVICO/
 │<br>
 ├── app/ # Interface gráfica (controle da automação)<br>
 ├── assets/ # Arquivos XML organizados por mês/ano<br>
